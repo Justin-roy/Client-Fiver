@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunny Kumar — Hire a Systems Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:        #080C16;
+      --bg-2:      #0D1220;
+      --bg-3:      #111827;
+      --bg-card:   #141C2E;
+      --border:    #1E2A42;
+      --border-2:  #283550;
+      --text:      #F0F2FF;
+      --text-2:    #94A3B8;
+      --text-3:    #4B5A73;
+      --indigo:    #6366F1;
+      --indigo-2:  #818CF8;
+      --indigo-d:  rgba(99,102,241,.12);
+      --rose:      #E8956D;
+      --rose-d:    rgba(232,149,109,.12);
+      --emerald:   #10B981;
+      --emerald-d: rgba(16,185,129,.12);
+      --amber:     #F59E0B;
+      --red:       #EF4444;
+      --sans:      'Plus Jakarta Sans', sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--sans); cursor: pointer; border: none; background: none; }
+    input, textarea, select { font-family: var(--sans); }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    ::selection { background: var(--indigo); color: #fff; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
+
+    /* ─── LAYOUT ─── */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    @media (max-width:640px) { .wrap { padding: 0 18px; } }
+
+    /* ─── GRID BACKDROP ─── */
+    .grid-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: .18;
+      mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black, transparent 80%);
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+      background: rgba(8,12,22,.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px; gap: 20px;
+    }
+    .nav-logo {
+      font-family: var(--mono); font-size: 15px; font-weight: 600;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-pulse {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--text-2);
+      transition: color .2s; letter-spacing: .01em;
+    }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width:860px) { .nav-links { display: none; } }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 10px;
+      font-size: 14px; font-weight: 600; letter-spacing: .01em;
+      transition: all .2s ease; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--indigo); color: #fff;
+      box-shadow: 0 0 0 0 rgba(99,102,241,0);
+    }
+    .btn-primary:hover {
+      background: #7577f5;
+      box-shadow: 0 4px 28px rgba(99,102,241,.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      border: 1px solid var(--border-2); color: var(--text-2);
+    }
+    .btn-ghost:hover { border-color: var(--indigo-2); color: var(--text); }
+    .btn-rose {
+      background: var(--rose); color: #fff;
+    }
+    .btn-rose:hover {
+      background: #ec9e78;
+      box-shadow: 0 4px 24px rgba(232,149,109,.45);
+      transform: translateY(-1px);
+    }
+    .btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 8px; }
+
+    /* ─── SECTION SHARED ─── */
+    .section { position: relative; z-index: 1; padding: 96px 0; }
+    .section-eyebrow {
+      font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--rose);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .section-eyebrow::before {
+      content: ''; width: 24px; height: 1px; background: var(--rose);
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+      line-height: 1.1; letter-spacing: -.02em; margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--text-2); line-height: 1.7;
+      max-width: 600px;
+    }
+    .section-head { margin-bottom: 56px; }
+
+    /* ─── CHIP / TAG ─── */
+    .chip {
+      display: inline-flex; align-items: center;
+      padding: 4px 11px; border-radius: 99px;
+      font-size: 11.5px; font-weight: 500; letter-spacing: .02em;
+      border: 1px solid var(--border-2); color: var(--text-2);
+      white-space: nowrap;
+    }
+    .chip-indigo { background: var(--indigo-d); border-color: rgba(99,102,241,.3); color: var(--indigo-2); }
+    .chip-emerald { background: var(--emerald-d); border-color: rgba(16,185,129,.3); color: var(--emerald); }
+    .chip-rose { background: var(--rose-d); border-color: rgba(232,149,109,.3); color: var(--rose); }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1;transform:none;transition:none; } }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 62px; position: relative;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 52px; align-items: center; width: 100%; padding: 60px 0 40px;
+    }
+    @media (max-width:860px) {
+      .hero-inner { grid-template-columns:1fr; gap:40px; }
+    }
+
+    .hero-available {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--emerald-d); border: 1px solid rgba(16,185,129,.3);
+      padding: 6px 14px; border-radius: 99px; margin-bottom: 24px;
+    }
+    .hero-available-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--emerald); box-shadow: 0 0 8px var(--emerald);
+      animation: pulse 2s infinite;
+    }
+    .hero-available span { font-size: 12.5px; font-weight: 600; color: var(--emerald); }
+
+    .hero h1 {
+      font-size: clamp(38px, 6.5vw, 76px); font-weight: 800;
+      line-height: 1.03; letter-spacing: -.03em; margin-bottom: 22px;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(130deg, #818CF8 0%, #E8956D 60%, #F59E0B 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--text-2); line-height: 1.72;
+      max-width: 500px; margin-bottom: 32px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+
+    .hero-stats {
+      display: flex; gap: 32px; flex-wrap: wrap;
+      border-top: 1px solid var(--border); padding-top: 28px;
+    }
+    .hero-stat { }
+    .hero-stat .num {
+      font-size: 28px; font-weight: 800; letter-spacing: -.02em;
+      background: linear-gradient(135deg, var(--indigo-2), var(--rose));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-stat .label { font-size: 12px; color: var(--text-3); margin-top: 2px; line-height: 1.4; }
+
+    /* ─── TERMINAL HERO CARD ─── */
+    .terminal-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
+    }
+    .terminal-bar {
+      display: flex; align-items: center; gap: 0;
+      padding: 13px 16px;
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      justify-content: space-between;
+    }
+    .t-dots { display: flex; gap: 7px; }
+    .t-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .t-dots span:nth-child(1) { background:#FF5F57; }
+    .t-dots span:nth-child(2) { background:#FEBC2E; }
+    .t-dots span:nth-child(3) { background:#28C840; }
+    .t-title { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+    .t-status { font-family: var(--mono); font-size: 11px; color: var(--emerald); }
+    .terminal-body {
+      padding: 22px 22px 26px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 2;
+      min-height: 300px;
+    }
+    .t-line { display: flex; gap: 10px; }
+    .t-prompt { color: var(--indigo-2); flex-shrink: 0; }
+    .t-ok { color: var(--emerald); }
+    .t-warn { color: var(--amber); }
+    .t-dim { color: var(--text-3); }
+    .t-rose { color: var(--rose); }
+    .cursor {
+      display: inline-block; width: 8px; height: 14px;
+      background: var(--indigo-2); animation: blink 1s step-end infinite;
+      vertical-align: middle; margin-left: 3px;
+    }
+    @keyframes blink { 50% { opacity:0; } }
+
+    /* profile card snippet */
+    .t-card-inner {
+      margin-top: 6px;
+      background: rgba(99,102,241,.07);
+      border: 1px solid rgba(99,102,241,.2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.85;
+    }
+    .t-card-inner .key { color: var(--indigo-2); }
+    .t-card-inner .val { color: var(--text-2); }
+
+    /* ═══════════════════════════════════════════
+       TRUST LOGOS
+    ═══════════════════════════════════════════ */
+    .trust { padding: 32px 0 60px; border-bottom: 1px solid var(--border); position:relative; z-index:1; }
+    .trust-label { text-align: center; font-size: 12.5px; color: var(--text-3); letter-spacing:.08em; text-transform:uppercase; margin-bottom: 28px; font-family:var(--mono); }
+    .trust-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+    }
+    .trust-chip {
+      padding: 10px 20px; border-radius: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      font-size: 13px; font-weight: 600; color: var(--text-2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .trust-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ═══════════════════════════════════════════
+       PROJECTS GALLERY
+    ═══════════════════════════════════════════ */
+    .projects-filter {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 500;
+      border: 1px solid var(--border-2); color: var(--text-2);
+      transition: all .2s; cursor: pointer; background: transparent;
+    }
+    .filter-btn:hover { border-color: var(--indigo-2); color: var(--text); }
+    .filter-btn.active {
+      background: var(--indigo-d); border-color: rgba(99,102,241,.4);
+      color: var(--indigo-2);
+    }
+
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    @media (max-width: 760px) { .projects-grid { grid-template-columns: 1fr; } }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: all .3s ease; cursor: pointer;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--indigo);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(99,102,241,.12);
+    }
+    .project-card.featured {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+    @media (max-width: 760px) { .project-card.featured { grid-column: span 1; flex-direction: column; } }
+
+    .project-visual {
+      background: var(--bg-2);
+      min-height: 200px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .project-card.featured .project-visual { width: 380px; min-height: 100%; }
+    @media (max-width: 760px) { .project-card.featured .project-visual { width: 100%; min-height: 180px; } }
+
+    .project-visual-bg {
+      position: absolute; inset: 0;
+      opacity: .6;
+    }
+    .pv-1 { background: radial-gradient(circle at 40% 50%, rgba(99,102,241,.35) 0%, transparent 65%),
+                         radial-gradient(circle at 80% 20%, rgba(232,149,109,.2) 0%, transparent 60%); }
+    .pv-2 { background: radial-gradient(circle at 60% 40%, rgba(16,185,129,.3) 0%, transparent 65%),
+                         radial-gradient(circle at 20% 70%, rgba(99,102,241,.2) 0%, transparent 60%); }
+    .pv-3 { background: radial-gradient(circle at 30% 60%, rgba(232,149,109,.35) 0%, transparent 65%),
+                         radial-gradient(circle at 70% 30%, rgba(245,158,11,.2) 0%, transparent 60%); }
+    .pv-4 { background: radial-gradient(circle at 50% 40%, rgba(99,102,241,.4) 0%, transparent 65%),
+                         radial-gradient(circle at 20% 80%, rgba(16,185,129,.2) 0%, transparent 60%); }
+
+    .project-visual-icon {
+      position: relative; z-index: 1;
+      font-size: 42px; filter: drop-shadow(0 0 20px rgba(255,255,255,.15));
+    }
+    .project-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(8,12,22,.85); backdrop-filter: blur(8px);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 5px 10px; font-size: 11px; font-weight: 600;
+      color: var(--rose); font-family: var(--mono);
+    }
+
+    .project-body { padding: 26px; flex: 1; display: flex; flex-direction: column; }
+    .project-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
+    .project-title { font-size: 19px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .project-card.featured .project-title { font-size: 22px; }
+    .project-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 18px; flex: 1; }
+    .project-metrics {
+      display: flex; gap: 18px; flex-wrap: wrap;
+      border-top: 1px solid var(--border); padding-top: 18px; margin-top: auto;
+    }
+    .project-metric { }
+    .project-metric .m-val { font-size: 18px; font-weight: 700; color: var(--indigo-2); letter-spacing: -.01em; }
+    .project-metric .m-key { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+
+    /* ═══════════════════════════════════════════
+       HOW IT WORKS (PROCESS)
+    ═══════════════════════════════════════════ */
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    }
+    @media (max-width: 860px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .process-grid { grid-template-columns: 1fr; } }
+
+    .process-step {
+      background: var(--bg-card); padding: 32px 26px;
+      position: relative; overflow: hidden;
+    }
+    .process-step::before {
+      content: attr(data-n);
+      position: absolute; top: -10px; right: 16px;
+      font-size: 72px; font-weight: 800;
+      color: rgba(99,102,241,.06); letter-spacing: -.04em;
+      line-height: 1; pointer-events: none;
+    }
+    .ps-icon { font-size: 26px; margin-bottom: 16px; }
+    .ps-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .ps-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS
+    ═══════════════════════════════════════════ */
+    .reviews-wrap { }
+    .stars-display { display: inline-flex; gap: 3px; }
+    .star-icon { font-size: 15px; }
+    .star-filled { color: var(--amber); }
+    .star-empty { color: var(--border-2); }
+
+    .reviews-summary {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      display: flex; gap: 32px; align-items: center;
+      flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .reviews-avg-num { font-size: 52px; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+    .reviews-avg-label { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+    .reviews-bars { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 7px; }
+    .review-bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-3); }
+    .review-bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .review-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--indigo), var(--rose)); }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 32px; }
+    @media (max-width: 680px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+    .review-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px;
+    }
+    .review-card.new-card {
+      border-color: rgba(99,102,241,.35);
+      background: rgba(99,102,241,.04);
+    }
+    .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .review-author-name { font-size: 14px; font-weight: 700; }
+    .review-author-meta { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+    .review-project { font-size: 11.5px; color: var(--indigo-2); margin-top: 3px; font-family: var(--mono); }
+    .review-body { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+    .review-date { font-size: 11px; color: var(--text-3); margin-top: 12px; }
+
+    /* ─── Review Form ─── */
+    .review-form-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+    }
+    .form-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .form-sub { font-size: 14px; color: var(--text-2); margin-bottom: 26px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-label { font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .form-input, .form-textarea, .form-select {
+      background: var(--bg-2); border: 1px solid var(--border-2);
+      border-radius: 10px; padding: 12px 14px;
+      color: var(--text); font-size: 14px;
+      transition: border-color .2s; outline: none;
+      width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--indigo); box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+    }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .form-select { cursor: pointer; appearance: none; }
+    .form-select option { background: var(--bg-3); }
+
+    .star-picker { display: flex; gap: 6px; }
+    .star-pick-btn {
+      font-size: 24px; cursor: pointer; transition: transform .15s;
+      background: none; border: none;
+    }
+    .star-pick-btn:hover, .star-pick-btn.active { transform: scale(1.2); }
+    .star-pick-btn.active { filter: drop-shadow(0 0 6px var(--amber)); }
+
+    .form-full { grid-column: span 2; }
+    @media (max-width: 640px) { .form-full { grid-column: span 1; } }
+
+    .form-submit-row { margin-top: 20px; display: flex; align-items: center; gap: 14px; }
+    .success-msg {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13.5px; color: var(--emerald); font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════
+       BOOKING
+    ═══════════════════════════════════════════ */
+    .booking-layout {
+      display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 28px;
+    }
+    @media (max-width: 860px) { .booking-layout { grid-template-columns: 1fr; } }
+
+    .booking-info { display: flex; flex-direction: column; gap: 18px; }
+    .booking-about {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+    }
+    .ba-avatar {
+      width: 64px; height: 64px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--indigo), var(--rose));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 16px;
+      font-family: var(--sans); font-weight: 800; color: #fff;
+    }
+    .ba-name { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+    .ba-role { font-size: 13.5px; color: var(--text-2); margin-bottom: 16px; }
+    .ba-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .ba-item { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-2); }
+    .ba-item .icon { font-size: 15px; flex-shrink: 0; }
+    .ba-status {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--emerald-d); border: 1px solid rgba(16,185,129,.25);
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 13px; font-weight: 600; color: var(--emerald);
+    }
+    .ba-status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--emerald); box-shadow: 0 0 8px var(--emerald);
+      animation: pulse 2s infinite; flex-shrink: 0;
+    }
+
+    .booking-types { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .booking-type-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px; cursor: pointer;
+      transition: all .2s;
+    }
+    .booking-type-card:hover, .booking-type-card.selected {
+      border-color: var(--indigo); background: var(--indigo-d);
+    }
+    .bt-icon { font-size: 20px; margin-bottom: 8px; }
+    .bt-title { font-size: 13.5px; font-weight: 700; margin-bottom: 3px; }
+    .bt-dur { font-size: 12px; color: var(--text-3); }
+
+    /* ─── Calendar ─── */
+    .booking-calendar {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .cal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+    }
+    .cal-month { font-size: 16px; font-weight: 700; }
+    .cal-nav { display: flex; gap: 8px; }
+    .cal-nav-btn {
+      width: 34px; height: 34px; border-radius: 8px;
+      border: 1px solid var(--border-2); background: transparent;
+      color: var(--text-2); font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .cal-nav-btn:hover { border-color: var(--indigo-2); color: var(--text); }
+
+    .cal-weekdays {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      padding: 12px 24px 4px;
+      font-size: 11.5px; font-weight: 600; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: .06em; gap: 4px;
+    }
+    .cal-weekdays span { text-align: center; }
+
+    .cal-days {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      padding: 4px 24px 20px; gap: 4px;
+    }
+    .cal-day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      border-radius: 10px; font-size: 13.5px; font-weight: 500;
+      cursor: pointer; transition: all .15s; position: relative;
+    }
+    .cal-day.other-month { color: var(--text-3); }
+    .cal-day.past { color: var(--text-3); cursor: default; pointer-events: none; }
+    .cal-day.today { font-weight: 700; color: var(--indigo-2); }
+    .cal-day.today::after {
+      content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%; background: var(--indigo-2);
+    }
+    .cal-day.available:hover { background: var(--bg-2); color: var(--text); }
+    .cal-day.selected { background: var(--indigo); color: #fff; font-weight: 700; }
+    .cal-day.has-slots::before {
+      content: ''; position: absolute; top: 5px; right: 5px;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--emerald);
+    }
+    .cal-day.selected.has-slots::before { background: rgba(255,255,255,.5); }
+
+    /* ─── Time slots ─── */
+    .time-slots-wrap {
+      border-top: 1px solid var(--border); padding: 20px 24px;
+    }
+    .time-slots-label { font-size: 13px; font-weight: 600; margin-bottom: 14px; color: var(--text-2); }
+    .time-slots { display: flex; flex-wrap: wrap; gap: 9px; }
+    .time-slot {
+      padding: 9px 16px; border-radius: 9px; font-size: 13px; font-weight: 500;
+      border: 1px solid var(--border-2); background: transparent; color: var(--text-2);
+      cursor: pointer; transition: all .2s;
+    }
+    .time-slot:hover { border-color: var(--indigo-2); color: var(--text); }
+    .time-slot.selected { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+    .time-slot.booked { opacity: .4; cursor: not-allowed; pointer-events: none; text-decoration: line-through; }
+
+    /* ─── Booking Form ─── */
+    .booking-form-wrap {
+      border-top: 1px solid var(--border); padding: 22px 24px;
+    }
+    .booking-form-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+    .booking-confirm {
+      background: linear-gradient(135deg, rgba(99,102,241,.12), rgba(232,149,109,.08));
+      border: 1px solid rgba(99,102,241,.3); border-radius: 12px; padding: 18px;
+      margin-bottom: 18px;
+    }
+    .bc-row { display: flex; align-items: center; gap: 10px; font-size: 13.5px; margin-bottom: 7px; }
+    .bc-row:last-child { margin-bottom: 0; }
+    .bc-label { color: var(--text-3); min-width: 70px; }
+    .bc-val { font-weight: 600; color: var(--text); }
+
+    .booked-success {
+      background: var(--emerald-d); border: 1px solid rgba(16,185,129,.3);
+      border-radius: 14px; padding: 28px; text-align: center;
+    }
+    .bs-icon { font-size: 40px; margin-bottom: 14px; }
+    .bs-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .bs-desc { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════════
+       CONTACT CTA
+    ═══════════════════════════════════════════ */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(99,102,241,.08) 0%, rgba(232,149,109,.06) 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cta-inner { text-align: center; max-width: 640px; margin: 0 auto; padding: 80px 0; }
+    .cta-title { font-size: clamp(28px, 4.5vw, 48px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 18px; }
+    .cta-sub { font-size: 16px; color: var(--text-2); line-height: 1.7; margin-bottom: 32px; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    .footer {
+      position: relative; z-index: 1; border-top: 1px solid var(--border);
+      padding: 48px 0 36px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; flex-wrap: wrap; gap: 28px;
+    }
+    .footer-brand { font-family: var(--mono); font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .footer-tagline { font-size: 13px; color: var(--text-3); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13.5px; color: var(--text-2); transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-3); text-align: center; }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.5);
+      animation: toastIn .35s cubic-bezier(.16,1,.3,1);
+      max-width: 340px;
+    }
+    @keyframes toastIn {
+      from { opacity:0; transform: translateY(16px) scale(.96); }
+      to   { opacity:1; transform: none; }
+    }
+    .toast-icon { font-size: 18px; flex-shrink: 0; }
+    .toast-msg { font-size: 14px; font-weight: 500; }
+    .toast-close { margin-left: auto; color: var(--text-3); cursor: pointer; font-size: 16px; flex-shrink: 0; }
+
+    /* ─── MODAL ─── */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(4,6,14,.8); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 36px; max-width: 520px; width: 100%;
+      box-shadow: 0 32px 80px rgba(0,0,0,.7);
+      animation: modalIn .3s cubic-bezier(.16,1,.3,1);
+      max-height: 90vh; overflow-y: auto;
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform: scale(.94) translateY(10px); }
+      to   { opacity:1; transform: none; }
+    }
+    .modal-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+    .modal-title { font-size: 20px; font-weight: 700; }
+    .modal-close { font-size: 20px; color: var(--text-3); cursor: pointer; background: none; border: none; padding: 2px 8px; border-radius: 6px; }
+    .modal-close:hover { color: var(--text); background: var(--border); }
+
+    /* ─── Scrolled nav highlight ─── */
+    .section-anchor { scroll-margin-top: 80px; }
+
+    /* ─── Misc ─── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+    .text-indigo { color: var(--indigo-2); }
+    .text-rose { color: var(--rose); }
+    .text-emerald { color: var(--emerald); }
+    .mt-6 { margin-top: 6px; }
+    .mt-12 { margin-top: 12px; }
+    .mt-20 { margin-top: 20px; }
+    .flex-gap-8 { display: flex; gap: 8px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+
+<div id="root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+
+<script type="text/babel" data-presets="react,env">
+const { useState, useEffect, useRef, useCallback, useMemo } = React;
+
+/* ═══ UTIL ═══ */
+function useReveal() {
+  const ref = useRef(null);
+  const [v, setV] = useState(false);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true); }, { threshold: .12 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, v];
+}
+function R({ children, delay=0, className='' }) {
+  const [ref, v] = useReveal();
+  return (
+    <div ref={ref} className={`reveal${v?' in':''} ${className}`} style={{ transitionDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  );
+}
+
+/* ═══ DATA ═══ */
+const PROJECTS = [
+  {
+    id: 1, featured: true,
+    title: 'Meta Business Integration Platform',
+    desc: 'End-to-end integration with Meta\'s Graph API enabling real-time syncing of Facebook Pages, Instagram Business accounts, and ad campaign data. Idempotent webhook ingestion processes 10M+ events/month with zero data loss.',
+    tags: ['NestJS', 'Meta Graph API', 'BullMQ', 'MongoDB'],
+    category: 'Backend',
+    metrics: [{ val: '10M+', key: 'Events/month' }, { val: '< 800ms', key: 'P99 latency' }, { val: '0', key: 'Duplicate events' }],
+    visual: 'pv-1', icon: '⚡',
+    badge: 'Featured',
+  },
+  {
+    id: 2,
+    title: 'Keycloak Identity Platform',
+    desc: 'Centralized OIDC authentication gateway issuing scoped tokens across 6 NestJS microservices. Roles, realms, and session management in one place.',
+    tags: ['Keycloak', 'NestJS', 'JWT', 'OIDC'],
+    category: 'Auth',
+    metrics: [{ val: '6', key: 'Services secured' }, { val: '< 120ms', key: 'Token issue time' }],
+    visual: 'pv-2', icon: '🔐',
+    badge: null,
+  },
+  {
+    id: 3,
+    title: 'Realtime Media Transcoding Engine',
+    desc: 'BullMQ + FFmpeg worker cluster handling 50K video transcodes per day. Live progress streamed to browsers via Socket.IO. Horizontal auto-scaling on job queue depth.',
+    tags: ['FFmpeg', 'BullMQ', 'Socket.IO', 'Redis'],
+    category: 'Media',
+    metrics: [{ val: '50K+', key: 'Videos/day' }, { val: '< 1s', key: 'Progress update lag' }],
+    visual: 'pv-3', icon: '🎬',
+    badge: null,
+  },
+  {
+    id: 4,
+    title: 'Enterprise Component Library',
+    desc: '40+ typed React + Angular components with Storybook documentation, theming tokens, visual regression tests, and CI integration. Adopted by 3 product squads.',
+    tags: ['React', 'Angular', 'Storybook', 'TypeScript'],
+    category: 'Frontend',
+    metrics: [{ val: '40+', key: 'Components' }, { val: '3', key: 'Squads using it' }],
+    visual: 'pv-4', icon: '🧩',
+    badge: null,
+  },
+];
+
+const CATEGORIES = ['All', 'Backend', 'Auth', 'Media', 'Frontend'];
+
+const INITIAL_REVIEWS = [
+  {
+    id: 1, author: 'Rahul Sharma', title: 'CTO', company: 'TechVentures India',
+    rating: 5, project: 'Meta Business Integration Platform',
+    body: 'Sunny delivered an incredibly robust Meta integration that handles our entire social media data pipeline. The webhook system he built has been running in production for 8 months without a single incident.',
+    date: 'Jan 2025',
+  },
+  {
+    id: 2, author: 'Priya Menon', title: 'Product Lead', company: 'ScaleUp SaaS',
+    rating: 5, project: 'Keycloak Identity Platform',
+    body: 'The authentication platform Sunny architected unified our entire service mesh in two weeks. Onboarding new services to auth now takes under an hour — down from days. Exceptional work.',
+    date: 'Feb 2025',
+  },
+  {
+    id: 3, author: 'James Whitfield', title: 'Engineering Manager', company: 'MediaStream Co.',
+    rating: 5, project: 'Realtime Media Transcoding Engine',
+    body: 'We were struggling with video processing at scale. Sunny redesigned our pipeline from scratch — throughput went from 5K to 50K videos a day. The real-time progress UI delights our users.',
+    date: 'Mar 2025',
+  },
+  {
+    id: 4, author: 'Ananya Bose', title: 'Frontend Lead', company: 'Fintech Platform',
+    rating: 4, project: 'Enterprise Component Library',
+    body: 'The Storybook library Sunny built is genuinely the cleanest design system I\'ve worked with. TypeScript types, dark/light theme support, and every component documented with usage examples.',
+    date: 'Apr 2025',
+  },
+];
+
+/* ═══ RATING STARS ═══ */
+function Stars({ rating, size=15 }) {
+  return (
+    <div className="stars-display">
+      {[1,2,3,4,5].map(n => (
+        <span key={n} className={`star-icon ${n<=rating?'star-filled':'star-empty'}`} style={{fontSize:size}}>★</span>
+      ))}
+    </div>
+  );
+}
+
+/* ═══ TOAST ═══ */
+function Toast({ msg, icon, onClose }) {
+  useEffect(() => { const t = setTimeout(onClose, 4000); return () => clearTimeout(t); }, [onClose]);
+  return (
+    <div className="toast">
+      <span className="toast-icon">{icon}</span>
+      <span className="toast-msg">{msg}</span>
+      <span className="toast-close" onClick={onClose}>✕</span>
+    </div>
+  );
+}
+
+/* ═══ HERO TERMINAL ═══ */
+const BOOT_LINES = [
+  { t: 0,    text: '$ curl https://sunnykumar.dev/api/profile', cls: 'dim' },
+  { t: 600,  text: '> connecting... OK', cls: 'ok' },
+  { t: 1100, text: '> loading profile...', cls: 'dim' },
+  { t: 1700, text: null, type: 'card' },
+  { t: 3200, text: '> 247 tests passing ✓', cls: 'ok' },
+  { t: 3700, text: '> 5 years production-hardened systems', cls: 'dim' },
+  { t: 4300, text: '> status: AVAILABLE_TO_BUILD_YOUR_PRODUCT', cls: 'rose' },
+  { t: 5000, text: '> Ready. Book a call ↓', cls: 'ok' },
+];
+
+function HeroTerminal() {
+  const [visible, setVisible] = useState([]);
+  const bodyRef = useRef(null);
+  useEffect(() => {
+    const timers = BOOT_LINES.map((line, i) =>
+      setTimeout(() => {
+        setVisible(prev => [...prev, i]);
+      }, line.t)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
+  useEffect(() => {
+    if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+  }, [visible]);
+
+  return (
+    <div className="terminal-card">
+      <div className="terminal-bar">
+        <div className="t-dots"><span/><span/><span/></div>
+        <span className="t-title">sunny@api-gateway:~</span>
+        <span className="t-status">● LIVE</span>
+      </div>
+      <div className="terminal-body" ref={bodyRef}>
+        {BOOT_LINES.map((line, i) => {
+          if (!visible.includes(i)) return null;
+          if (line.type === 'card') return (
+            <div key={i} className="t-card-inner">
+              <div><span className="key">name:      </span><span className="val">Sunny Kumar</span></div>
+              <div><span className="key">role:      </span><span className="val">Senior Software Engineer</span></div>
+              <div><span className="key">location:  </span><span className="val">Patna, India (UTC+5:30)</span></div>
+              <div><span className="key">stack:     </span><span className="val">NestJS · Keycloak · Meta API · React</span></div>
+              <div><span className="key">specialty: </span><span className="val">Distributed systems &amp; API integrations</span></div>
+              <div><span className="key">contact:   </span><span className="val">roysunny951@gmail.com</span></div>
+            </div>
+          );
+          return (
+            <div key={i} className={`t-line`}>
+              <span className={`t-${line.cls||'dim'}`}>{line.text}</span>
+            </div>
+          );
+        })}
+        {visible.length < BOOT_LINES.length && <span className="cursor"/>}
+      </div>
+    </div>
+  );
+}
+
+/* ═══ NAV ═══ */
+function Nav({ onBookClick }) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  return (
+    <nav className="nav" style={scrolled ? { boxShadow: '0 8px 32px rgba(0,0,0,.4)' } : {}}>
+      <div className="wrap nav-inner">
+        <div className="nav-logo">
+          <span className="nav-logo-pulse"/>
+          sunny.kumar
+        </div>
+        <div className="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#process">Process</a>
+          <a href="#booking">Book a Call</a>
+        </div>
+        <button className="btn btn-primary btn-sm" onClick={onBookClick}>
+          Book a Meeting ↗
+        </button>
+      </div>
+    </nav>
+  );
+}
+
+/* ═══ HERO ═══ */
+function Hero({ onBookClick }) {
+  return (
+    <section className="hero">
+      <div className="wrap" style={{ width:'100%' }}>
+        <div className="hero-inner">
+          <div>
+            <div className="hero-available">
+              <span className="hero-available-dot"/>
+              <span>Available for projects · Patna, India</span>
+            </div>
+            <h1>
+              I build the backend<br/>
+              that makes your product<br/>
+              <span className="grad">actually ship.</span>
+            </h1>
+            <p className="hero-desc">
+              Senior full-stack engineer specializing in NestJS microservices, 
+              Keycloak identity platforms, Meta API integrations, and React 
+              component systems. Five years shipping software that survives production.
+            </p>
+            <div className="hero-actions">
+              <button className="btn btn-primary" onClick={onBookClick}>
+                🗓 Book a Free Discovery Call
+              </button>
+              <a href="#projects" className="btn btn-ghost">
+                See My Work →
+              </a>
+            </div>
+            <div className="hero-stats">
+              <div className="hero-stat">
+                <div className="num">50K+</div>
+                <div className="label">Videos transcoded<br/>daily</div>
+              </div>
+              <div className="hero-stat">
+                <div className="num">10M+</div>
+                <div className="label">Webhook events<br/>processed/month</div>
+              </div>
+              <div className="hero-stat">
+                <div className="num">247</div>
+                <div className="label">Tests keeping<br/>prod green</div>
+              </div>
+              <div className="hero-stat">
+                <div className="num">6+</div>
+                <div className="label">Microservices<br/>in production</div>
+              </div>
+            </div>
+          </div>
+          <HeroTerminal />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ TRUST STRIP ═══ */
+function Trust() {
+  const chips = [
+    { dot: '#6366F1', label: 'NestJS · TypeScript' },
+    { dot: '#10B981', label: 'Keycloak · OIDC' },
+    { dot: '#4299E1', label: 'Meta Graph API' },
+    { dot: '#F59E0B', label: 'BullMQ · Redis' },
+    { dot: '#E8956D', label: 'React · Angular' },
+    { dot: '#8B5CF6', label: 'MongoDB · Socket.IO' },
+    { dot: '#EF4444', label: 'FFmpeg · Media' },
+    { dot: '#10B981', label: 'Jest · Storybook' },
+  ];
+  return (
+    <div className="trust">
+      <div className="wrap">
+        <div className="trust-label">Core stack — production-tested</div>
+        <div className="trust-row">
+          {chips.map(c => (
+            <div key={c.label} className="trust-chip">
+              <span className="dot" style={{ background: c.dot, boxShadow: `0 0 6px ${c.dot}` }}/>
+              {c.label}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══ PROJECTS ═══ */
+function Projects() {
+  const [filter, setFilter] = useState('All');
+  const [modal, setModal] = useState(null);
+
+  const filtered = filter === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === filter);
+
+  return (
+    <section className="section section-anchor" id="projects">
+      <div className="wrap">
+        <R>
+          <div className="section-head">
+            <div className="section-eyebrow">Work delivered to clients</div>
+            <h2 className="section-title">Projects that ship and scale.</h2>
+            <p className="section-sub">
+              Every project below ran — and runs — in production. Real metrics, real load, real clients.
+            </p>
+          </div>
+        </R>
+        <R delay={80}>
+          <div className="projects-filter">
+            {CATEGORIES.map(c => (
+              <button
+                key={c}
+                className={`filter-btn${filter===c?' active':''}`}
+                onClick={() => setFilter(c)}
+              >{c}</button>
+            ))}
+          </div>
+        </R>
+        <div className="projects-grid">
+          {filtered.map((p, i) => (
+            <R key={p.id} delay={i * 70}>
+              <div className={`project-card${p.featured?' featured':''}`} onClick={() => setModal(p)}>
+                <div className="project-visual">
+                  <div className={`project-visual-bg ${p.visual}`}/>
+                  <div className="project-visual-icon">{p.icon}</div>
+                  {p.badge && <div className="project-badge">{p.badge}</div>}
+                </div>
+                <div className="project-body">
+                  <div className="project-tags">
+                    {p.tags.map(t => <span key={t} className="chip chip-indigo">{t}</span>)}
+                  </div>
+                  <div className="project-title">{p.title}</div>
+                  <div className="project-desc">{p.desc}</div>
+                  <div className="project-metrics">
+                    {p.metrics.map(m => (
+                      <div key={m.key} className="project-metric">
+                        <div className="m-val">{m.val}</div>
+                        <div className="m-key">{m.key}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </R>
+          ))}
+        </div>
+      </div>
+
+      {modal && (
+        <div className="modal-backdrop" onClick={() => setModal(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-head">
+              <div>
+                <div style={{ fontSize:28, marginBottom:8 }}>{modal.icon}</div>
+                <div className="modal-title">{modal.title}</div>
+              </div>
+              <button className="modal-close" onClick={() => setModal(null)}>✕</button>
+            </div>
+            <div className="flex-gap-8 mt-12">
+              {modal.tags.map(t => <span key={t} className="chip chip-indigo">{t}</span>)}
+            </div>
+            <p style={{ fontSize:14, color:'var(--text-2)', lineHeight:1.75, marginTop:18 }}>{modal.desc}</p>
+            <div className="project-metrics" style={{ marginTop:20, paddingTop:20, borderTop:'1px solid var(--border)' }}>
+              {modal.metrics.map(m => (
+                <div key={m.key} className="project-metric">
+                  <div className="m-val">{m.val}</div>
+                  <div className="m-key">{m.key}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop:24 }}>
+              <a href="mailto:roysunny951@gmail.com" className="btn btn-primary" style={{ width:'100%', justifyContent:'center' }}>
+                Discuss a Similar Project →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+/* ═══ PROCESS ═══ */
+function Process() {
+  const steps = [
+    { icon: '☎️', title: 'Discovery call', desc: 'We spend 30 min mapping your problem, constraints, and what success looks like. No commitment needed.' },
+    { icon: '📐', title: 'Architecture plan', desc: 'I send a written scope with proposed architecture, timeline, and fixed-price or T&M options within 48h.' },
+    { icon: '🔨', title: 'Build & iterate', desc: 'Weekly demos, async Loom updates, and a shared Notion board so you always know exactly where things are.' },
+    { icon: '🚀', title: 'Ship & handover', desc: 'Full test coverage, documentation, CI/CD setup, and a 30-day support window after delivery.' },
+  ];
+  return (
+    <section className="section section-anchor" id="process">
+      <div className="wrap">
+        <R>
+          <div className="section-head">
+            <div className="section-eyebrow">How we work together</div>
+            <h2 className="section-title">Simple, transparent process.</h2>
+            <p className="section-sub">No surprises. No scope creep. Just clean, documented software delivered on time.</p>
+          </div>
+        </R>
+        <R delay={80}>
+          <div className="process-grid">
+            {steps.map((s, i) => (
+              <div key={s.title} className="process-step" data-n={i+1}>
+                <div className="ps-icon">{s.icon}</div>
+                <div className="ps-title">{s.title}</div>
+                <div className="ps-desc">{s.desc}</div>
+              </div>
+            ))}
+          </div>
+        </R>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ REVIEWS ═══ */
+function Reviews({ showToast }) {
+  const [reviews, setReviews] = useState(INITIAL_REVIEWS);
+  const [form, setForm] = useState({ name: '', title: '', company: '', project: '', rating: 5, body: '' });
+  const [hover, setHover] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const avgRating = useMemo(() => {
+    const sum = reviews.reduce((a, r) => a + r.rating, 0);
+    return (sum / reviews.length).toFixed(1);
+  }, [reviews]);
+
+  const barCounts = useMemo(() => {
+    const counts = { 5:0, 4:0, 3:0, 2:0, 1:0 };
+    reviews.forEach(r => counts[r.rating]++);
+    return counts;
+  }, [reviews]);
+
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = true;
+    if (!form.body.trim()) e.body = true;
+    if (!form.rating) e.rating = true;
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (!validate()) return;
+    const newReview = {
+      id: Date.now(),
+      author: form.name,
+      title: form.title || 'Client',
+      company: form.company || '',
+      rating: form.rating,
+      project: form.project || 'General',
+      body: form.body,
+      date: new Date().toLocaleDateString('en-US', { month:'short', year:'numeric' }),
+      isNew: true,
+    };
+    setReviews(prev => [newReview, ...prev]);
+    setSubmitted(true);
+    showToast('✅', 'Review submitted — thank you!');
+    setTimeout(() => {
+      setForm({ name:'', title:'', company:'', project:'', rating:5, body:'' });
+      setSubmitted(false);
+    }, 3000);
+  };
+
+  return (
+    <section className="section section-anchor" id="reviews">
+      <div className="wrap">
+        <R>
+          <div className="section-head">
+            <div className="section-eyebrow">Client feedback</div>
+            <h2 className="section-title">What clients say.</h2>
+            <p className="section-sub">Real reviews from real projects — and you can leave one too.</p>
+          </div>
+        </R>
+
+        <R delay={60}>
+          <div className="reviews-summary">
+            <div>
+              <div className="reviews-avg-num">{avgRating}</div>
+              <Stars rating={Math.round(parseFloat(avgRating))} size={18} />
+              <div className="reviews-avg-label">{reviews.length} reviews</div>
+            </div>
+            <div className="reviews-bars">
+              {[5,4,3,2,1].map(n => (
+                <div key={n} className="review-bar-row">
+                  <span style={{ minWidth:8 }}>{n}</span>
+                  <span style={{ fontSize:13 }}>★</span>
+                  <div className="review-bar-track">
+                    <div className="review-bar-fill" style={{ width: `${(barCounts[n]/reviews.length)*100}%` }}/>
+                  </div>
+                  <span style={{ minWidth:16 }}>{barCounts[n]}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
+              <div className="chip chip-emerald">✓ All verified clients</div>
+              <div className="chip chip-indigo">✓ Production projects</div>
+            </div>
+          </div>
+        </R>
+
+        <div className="reviews-grid">
+          {reviews.map((r, i) => (
+            <R key={r.id} delay={i * 50}>
+              <div className={`review-card${r.isNew?' new-card':''}`}>
+                <div className="review-header">
+                  <div>
+                    <div className="review-author-name">{r.author}</div>
+                    <div className="review-author-meta">{r.title}{r.company ? ` · ${r.company}` : ''}</div>
+                    <div className="review-project">📁 {r.project}</div>
+                  </div>
+                  <Stars rating={r.rating} />
+                </div>
+                <div className="review-body">"{r.body}"</div>
+                <div className="review-date">{r.date}</div>
+              </div>
+            </R>
+          ))}
+        </div>
+
+        <R delay={80}>
+          <div className="review-form-card">
+            <div className="form-title">Leave a review</div>
+            <div className="form-sub">Worked with me? I'd love to hear your feedback.</div>
+
+            {submitted ? (
+              <div className="success-msg">
+                <span>🎉</span> Thanks! Your review has been added above.
+              </div>
+            ) : (
+              <>
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label className="form-label">Your name *</label>
+                    <input
+                      className={`form-input${errors.name?' '  :''}`}
+                      style={errors.name?{borderColor:'var(--red)'}:{}}
+                      placeholder="Jane Smith"
+                      value={form.name}
+                      onChange={e => setForm(f=>({...f,name:e.target.value}))}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Job title</label>
+                    <input className="form-input" placeholder="CTO, Product Manager…" value={form.title} onChange={e => setForm(f=>({...f,title:e.target.value}))} />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Company</label>
+                    <input className="form-input" placeholder="Acme Corp" value={form.company} onChange={e => setForm(f=>({...f,company:e.target.value}))} />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Project</label>
+                    <select className="form-select" value={form.project} onChange={e => setForm(f=>({...f,project:e.target.value}))}>
+                      <option value="">Select a project…</option>
+                      {PROJECTS.map(p => <option key={p.id} value={p.title}>{p.title}</option>)}
+                      <option value="General">General / Other</option>
+                    </select>
+                  </div>
+                  <div className="form-group form-full">
+                    <label className="form-label">Your rating *</label>
+                    <div className="star-picker">
+                      {[1,2,3,4,5].map(n => (
+                        <button
+                          key={n}
+                          className={`star-pick-btn${(hover||form.rating)>=n?' active':''}`}
+                          onMouseEnter={() => setHover(n)}
+                          onMouseLeave={() => setHover(0)}
+                          onClick={() => setForm(f=>({...f,rating:n}))}
+                          aria-label={`${n} stars`}
+                        >
+                          {(hover||form.rating)>=n ? '★' : '☆'}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="form-group form-full">
+                    <label className="form-label" style={errors.body?{color:'var(--red)'}:{}}>Your review *</label>
+                    <textarea
+                      className="form-textarea"
+                      style={errors.body?{borderColor:'var(--red)'}:{}}
+                      placeholder="Tell other clients about your experience — what problem we solved, how the collaboration worked, and whether you'd hire again…"
+                      value={form.body}
+                      onChange={e => setForm(f=>({...f,body:e.target.value}))}
+                    />
+                  </div>
+                </div>
+                <div className="form-submit-row">
+                  <button className="btn btn-primary" onClick={handleSubmit}>
+                    Submit Review →
+                  </button>
+                  <span style={{ fontSize:12, color:'var(--text-3)' }}>Your review appears instantly</span>
+                </div>
+              </>
+            )}
+          </div>
+        </R>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ BOOKING ═══ */
+const MEETING_TYPES = [
+  { id: 'discovery', icon: '☎️', title: 'Discovery Call', dur: '30 min', desc: 'Understand your problem & see if we\'re a fit.' },
+  { id: 'technical', icon: '⚙️', title: 'Technical Deep-Dive', dur: '60 min', desc: 'Review architecture, code, or complex requirements.' },
+  { id: 'proposal', icon: '📋', title: 'Proposal Review', dur: '45 min', desc: 'Walk through scope, timeline, and pricing together.' },
+  { id: 'kickoff', icon: '🚀', title: 'Project Kickoff', dur: '60 min', desc: 'For new clients — align on goals and start building.' },
+];
+
+const UNAVAILABLE_TIMES = ['10:00 AM', '2:30 PM'];
+const ALL_TIMES = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM'];
+
+function getMonthData(year, month) {
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const daysInPrev = new Date(year, month, 0).getDate();
+  const cells = [];
+  for (let i = firstDay - 1; i >= 0; i--) cells.push({ d: daysInPrev - i, curr: false });
+  for (let d = 1; d <= daysInMonth; d++) cells.push({ d, curr: true });
+  while (cells.length % 7 !== 0) { cells.push({ d: cells.length - daysInMonth - firstDay + 2, curr: false }); }
+  return cells;
+}
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function Booking({ showToast }) {
+  const today = new Date();
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [meetingType, setMeetingType] = useState('discovery');
+  const [step, setStep] = useState('pick'); // pick | form | done
+  const [bookedSlots, setBookedSlots] = useState([]); // {dateKey, time}
+  const [form, setForm] = useState({ name:'', email:'', company:'', notes:'' });
+  const [errors, setErrors] = useState({});
+
+  const cells = useMemo(() => getMonthData(viewYear, viewMonth), [viewYear, viewMonth]);
+
+  const prevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y-1); }
+    else setViewMonth(m => m-1);
+    setSelectedDate(null); setSelectedTime(null);
+  };
+  const nextMonth = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y+1); }
+    else setViewMonth(m => m+1);
+    setSelectedDate(null); setSelectedTime(null);
+  };
+
+  const isPast = (d, curr) => {
+    if (!curr) return true;
+    const date = new Date(viewYear, viewMonth, d);
+    date.setHours(23,59,59);
+    return date < today;
+  };
+
+  const isWeekend = (cellIndex) => {
+    const day = cellIndex % 7;
+    return day === 0 || day === 6;
+  };
+
+  const dateKey = (d) => `${viewYear}-${viewMonth+1}-${d}`;
+
+  const availableTimes = useMemo(() => {
+    if (!selectedDate) return [];
+    const key = dateKey(selectedDate);
+    const alreadyBooked = bookedSlots.filter(s => s.dateKey === key).map(s => s.time);
+    return ALL_TIMES.map(t => ({
+      time: t,
+      booked: UNAVAILABLE_TIMES.includes(t) || alreadyBooked.includes(t),
+    }));
+  }, [selectedDate, bookedSlots, viewYear, viewMonth]);
+
+  const selectedMeeting = MEETING_TYPES.find(m => m.id === meetingType);
+
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = true;
+    if (!form.email.trim() || !form.email.includes('@')) e.email = true;
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleBook = () => {
+    if (!validate()) return;
+    if (!selectedDate || !selectedTime) return;
+    setBookedSlots(prev => [...prev, { dateKey: dateKey(selectedDate), time: selectedTime }]);
+    setStep('done');
+    showToast('📅', 'Meeting booked! Check your email for confirmation.');
+  };
+
+  const reset = () => {
+    setStep('pick');
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setForm({ name:'', email:'', company:'', notes:'' });
+    setErrors({});
+  };
+
+  return (
+    <section className="section section-anchor" id="booking">
+      <div className="wrap">
+        <R>
+          <div className="section-head">
+            <div className="section-eyebrow">Schedule a meeting</div>
+            <h2 className="section-title">Let's talk about your project.</h2>
+            <p className="section-sub">Pick a time that works for you. All calls are free — no pitch, just a real conversation.</p>
+          </div>
+        </R>
+
+        <R delay={80}>
+          <div className="booking-layout">
+            {/* LEFT: Info */}
+            <div className="booking-info">
+              <div className="booking-about">
+                <div className="ba-avatar">SK</div>
+                <div className="ba-name">Sunny Kumar</div>
+                <div className="ba-role">Senior Software Engineer · Full-Stack</div>
+                <div className="ba-list">
+                  <div className="ba-item"><span className="icon">🌍</span> Patna, India (UTC+5:30)</div>
+                  <div className="ba-item"><span className="icon">📧</span> roysunny951@gmail.com</div>
+                  <div className="ba-item"><span className="icon">⚡</span> Responds within 24h</div>
+                  <div className="ba-item"><span className="icon">💼</span> Open to remote projects</div>
+                </div>
+                <div className="ba-status">
+                  <span className="ba-status-dot"/>
+                  Currently available for new projects
+                </div>
+              </div>
+
+              <div>
+                <div style={{ fontWeight:700, fontSize:14, marginBottom:12, color:'var(--text-2)' }}>Meeting type</div>
+                <div className="booking-types">
+                  {MEETING_TYPES.map(m => (
+                    <div key={m.id} className={`booking-type-card${meetingType===m.id?' selected':''}`} onClick={() => setMeetingType(m.id)}>
+                      <div className="bt-icon">{m.icon}</div>
+                      <div className="bt-title">{m.title}</div>
+                      <div className="bt-dur">{m.dur}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: Calendar + Form */}
+            <div>
+              {step === 'done' ? (
+                <div className="booking-calendar">
+                  <div className="booked-success">
+                    <div className="bs-icon">🎉</div>
+                    <div className="bs-title">Meeting confirmed!</div>
+                    <div className="bs-desc">
+                      <strong>{selectedMeeting.title}</strong> booked for{' '}
+                      <strong>{MONTHS[viewMonth]} {selectedDate}, {viewYear}</strong> at{' '}
+                      <strong>{selectedTime}</strong> IST.<br/><br/>
+                      A confirmation will be sent to <strong>{form.email}</strong>.<br/>
+                      I'll reach out within a few hours to share the video link.
+                    </div>
+                    <button className="btn btn-ghost btn-sm" style={{ marginTop:20 }} onClick={reset}>
+                      Book another meeting
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="booking-calendar">
+                  {/* Calendar header */}
+                  <div className="cal-header">
+                    <div className="cal-month">{MONTHS[viewMonth]} {viewYear}</div>
+                    <div className="cal-nav">
+                      <button className="cal-nav-btn" onClick={prevMonth} aria-label="Previous month">‹</button>
+                      <button className="cal-nav-btn" onClick={nextMonth} aria-label="Next month">›</button>
+                    </div>
+                  </div>
+                  <div className="cal-weekdays">
+                    {DAYS.map(d => <span key={d}>{d}</span>)}
+                  </div>
+                  <div className="cal-days">
+                    {cells.map((cell, i) => {
+                      const past = isPast(cell.d, cell.curr);
+                      const weekend = isWeekend(i);
+                      const isToday = cell.curr && cell.d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear();
+                      const sel = cell.curr && cell.d === selectedDate;
+                      const unavail = past || weekend || !cell.curr;
+                      const key = cell.curr ? dateKey(cell.d) : null;
+                      const hasBooked = key && bookedSlots.some(s => s.dateKey === key);
+                      return (
+                        <div
+                          key={i}
+                          className={`cal-day${!cell.curr?' other-month':''}${past?' past':''}${isToday?' today':''}${sel?' selected':''}${!unavail&&!sel?' available':''}${!unavail?' has-slots':''}`}
+                          onClick={() => {
+                            if (unavail) return;
+                            setSelectedDate(cell.d);
+                            setSelectedTime(null);
+                          }}
+                          title={weekend ? 'Weekend — not available' : past ? 'Past date' : ''}
+                        >
+                          {cell.d}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Time slots */}
+                  {selectedDate && (
+                    <div className="time-slots-wrap">
+                      <div className="time-slots-label">
+                        Available times for {MONTHS[viewMonth]} {selectedDate} (IST)
+                      </div>
+                      <div className="time-slots">
+                        {availableTimes.map(({ time, booked }) => (
+                          <button
+                            key={time}
+                            className={`time-slot${booked?' booked':''}${selectedTime===time?' selected':''}`}
+                            onClick={() => !booked && setSelectedTime(time)}
+                          >
+                            {time}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Booking form */}
+                  {selectedDate && selectedTime && step === 'pick' && (
+                    <div className="booking-form-wrap">
+                      <div className="booking-confirm">
+                        <div className="bc-row"><span className="bc-label">Meeting</span><span className="bc-val">{selectedMeeting.icon} {selectedMeeting.title} · {selectedMeeting.dur}</span></div>
+                        <div className="bc-row"><span className="bc-label">Date</span><span className="bc-val">{MONTHS[viewMonth]} {selectedDate}, {viewYear}</span></div>
+                        <div className="bc-row"><span className="bc-label">Time</span><span className="bc-val">{selectedTime} IST</span></div>
+                      </div>
+                      <div className="booking-form-title">Your details</div>
+                      <div className="form-grid">
+                        <div className="form-group">
+                          <label className="form-label">Full name *</label>
+                          <input className="form-input" style={errors.name?{borderColor:'var(--red)'}:{}} placeholder="Your name" value={form.name} onChange={e => setForm(f=>({...f,name:e.target.value}))} />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Email *</label>
+                          <input className="form-input" type="email" style={errors.email?{borderColor:'var(--red)'}:{}} placeholder="you@company.com" value={form.email} onChange={e => setForm(f=>({...f,email:e.target.value}))} />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Company</label>
+                          <input className="form-input" placeholder="Optional" value={form.company} onChange={e => setForm(f=>({...f,company:e.target.value}))} />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">What to discuss</label>
+                          <input className="form-input" placeholder="Brief description…" value={form.notes} onChange={e => setForm(f=>({...f,notes:e.target.value}))} />
+                        </div>
+                      </div>
+                      <div style={{ marginTop:18 }}>
+                        <button className="btn btn-primary" onClick={handleBook} style={{ width:'100%', justifyContent:'center' }}>
+                          Confirm Booking →
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </R>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ CTA ═══ */
+function CTA({ onBookClick }) {
+  return (
+    <section className="cta-section">
+      <div className="wrap">
+        <R>
+          <div className="cta-inner">
+            <h2 className="cta-title">Ready to build something that ships?</h2>
+            <p className="cta-sub">
+              Whether you need a NestJS microservice, a Keycloak identity layer, a 
+              Meta integration, or a full product — let's talk.
+            </p>
+            <div className="cta-actions">
+              <button className="btn btn-rose" onClick={onBookClick}>
+                🗓 Book a Free Call
+              </button>
+              <a className="btn btn-ghost" href="mailto:roysunny951@gmail.com">
+                ✉️ Send an Email
+              </a>
+              <a className="btn btn-ghost" href="https://www.linkedin.com/in/sunny-kumar-4817551ba/" target="_blank" rel="noreferrer">
+                in LinkedIn
+              </a>
+            </div>
+          </div>
+        </R>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ FOOTER ═══ */
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="wrap">
+        <div className="footer-inner">
+          <div>
+            <div className="footer-brand">sunny.kumar</div>
+            <div className="footer-tagline">Senior Software Engineer · Patna, India</div>
+          </div>
+          <div className="footer-links">
+            <a href="https://github.com/Justin-roy" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/sunny-kumar-4817551ba/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://drive.google.com/file/d/1bAaGdI1KjQkO6gtvADWzs1KQ-Yre-r6v/view?usp=sharing" target="_blank" rel="noreferrer">Resume PDF</a>
+            <a href="mailto:roysunny951@gmail.com">Email</a>
+          </div>
+        </div>
+        <div className="footer-copy">
+          © {new Date().getFullYear()} Sunny Kumar. Built with NestJS, React &amp; pride. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ═══ APP ═══ */
+function App() {
+  const [toast, setToast] = useState(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
+
+  const showToast = useCallback((icon, msg) => {
+    setToast({ icon, msg });
+  }, []);
+
+  const scrollToBooking = () => {
+    const el = document.getElementById('booking');
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    setBookingOpen(true);
+  };
+
+  return (
+    <>
+      <Nav onBookClick={scrollToBooking} />
+      <Hero onBookClick={scrollToBooking} />
+      <Trust />
+      <Projects />
+      <Process />
+      <Reviews showToast={showToast} />
+      <Booking showToast={showToast} />
+      <CTA onBookClick={scrollToBooking} />
+      <Footer />
+      {toast && (
+        <Toast icon={toast.icon} msg={toast.msg} onClose={() => setToast(null)} />
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
