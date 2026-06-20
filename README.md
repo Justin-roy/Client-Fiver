@@ -45,5 +45,5 @@ A modern and responsive Fiverr-inspired client interface built with a clean UI, 
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/Client-Fiver.git
+git clone https://github.com/Justin-roy/Client-Fiver.git
 cd Client-Fiver
